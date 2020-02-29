@@ -1,4 +1,4 @@
-# KorQuAD-embedding
+# nlp-embedding-tutorial
 Embedding Model Study
 
 # 소개
