@@ -1,4 +1,5 @@
 from gensim.models import Word2Vec
+from tqdm import tqdm
 
 import argparse
 import logging
@@ -25,6 +26,6 @@ if __name__ == '__main__':
 
     worker = multiprocessing.cpu_count()
 
-    corpus = [sent.strip().split(' ') for sent in open(corpus_path, 'r').readlines()]
+    corpus = [sent.strip().split(' ') for sent in tqdm(open(corpus_path, 'r').readlines())]
     model = Word2Vec(corpus, size=dim_size, workers=worker, sg=1)
     model.save(output_path)
