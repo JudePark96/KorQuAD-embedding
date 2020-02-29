@@ -1,4 +1,4 @@
-from corpus_utils import preprocess_corpus
+from corpus_utils import preprocess_corpus, tokenize
 
 import argparse
 
@@ -9,9 +9,15 @@ if __name__ == '__main__':
                         help='path of corpus')
     parser.add_argument('--output_path', type=str, required=True,
                         help='path of output')
+    parser.add_argument('--mode', type=str, required=True,
+                        help='preprocess mode')
 
     args = parser.parse_args()
     corpus_path = args.corpus_path
     output_path = args.output_path
+    mode = args.mode
 
-    preprocess_corpus(corpus_path, output_path)
+    if mode == 'preprocess':
+        preprocess_corpus(corpus_path, output_path)
+    elif mode == 'tokenize':
+        tokenize(corpus_path, output_path)

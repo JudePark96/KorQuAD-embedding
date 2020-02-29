@@ -1,4 +1,5 @@
 from tqdm import tqdm
+from konlpy.tag import Mecab
 
 
 import json
@@ -23,3 +24,13 @@ def preprocess_corpus(corpus_path: str, output_path: str) -> None:
 
         corpus.close()
         output.close()
+
+def tokenize(corpus_path: str, output_path: str) -> None:
+    tokenizer = Mecab()
+    with open(corpus_path) as corpus, open(output_path, 'w', encoding='utf-8') as output:
+        for line in tqdm(corpus):
+            text = ' '.join(tokenizer.morphs(line))
+            output.write(text + '\n')
+
+if __name__ == '__main__':
+    tokenize('./rsc/data/preprocessed_korquad.txt', './rsc/data/mecab_preprocessed_korquad.txt')
