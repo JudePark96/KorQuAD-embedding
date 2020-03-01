@@ -36,7 +36,7 @@ def preprocess_corpus(corpus_path: str, output_path: str) -> None:
         corpus.close()
         output.close()
 
-def exec_wiki_regex(content, token_min_len=2, token_max_len=100, lowerTrue):
+def exec_wiki_regex(content, token_min_len=2, token_max_len=100, lower=True):
     content = re.sub(EMAIL_PATTERN, ' ', content)  # remove email pattern
     content = re.sub(URL_PATTERN, ' ', content)  # remove url pattern
     content = re.sub(WIKI_REMOVE_CHARS, ' ', content)  # remove unnecessary chars
